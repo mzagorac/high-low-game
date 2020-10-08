@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 import Input from "./Input";
 import Button from "./Button";
 
-import { fetchCard } from "../redux/actions/deckActions";
+import { fetchCard, reset } from "../redux/actions/deckActions";
 
-const Interface = ({ deck_id, fetchCard }) => {
+const Interface = ({ deck_id, fetchCard, resetGame }) => {
   return (
     <div>
       <Input />
-      <Button label="New Game" onClick={() => fetchCard(deck_id)} />
-      <Button label="Reset" />
+      <Button label="New Game" />
+      <Button label="Reset" onClick={() => resetGame()} />
       <Button label="Lower" onClick={() => fetchCard(deck_id)} />
       <Button label="Higher" onClick={() => fetchCard(deck_id)} />
     </div>
@@ -25,6 +25,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchCard: (id) => dispatch(fetchCard(id)),
+    resetGame: () => dispatch(reset()),
   };
 };
 

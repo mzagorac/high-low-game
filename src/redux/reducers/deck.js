@@ -1,4 +1,4 @@
-import { FETCH_NEW_DECK, FETCH_CARD } from "../actions/actionTypes";
+import { FETCH_NEW_DECK, FETCH_CARD, RESET_GAME } from "../actions/actionTypes";
 
 const INITIAL_STATE = {
   deck_id: null,
@@ -24,6 +24,8 @@ export const deckReducer = (state = INITIAL_STATE, action) => {
         currentCard: action.payload.cards[0],
         flippedCards: [...state.flippedCards, action.payload.cards[0].image],
       };
+    case RESET_GAME:
+      return { ...INITIAL_STATE };
     default:
       return state;
   }

@@ -16,7 +16,7 @@ const Cardboard = (props) => {
           dim={{ width: 226, height: 314 }}
         />
         <Card
-          imgUrl={props.cardImage}
+          imgUrl={props.currentCard}
           position={{ x: 350, y: 50 }}
           dim={{ width: 226, height: 314 }}
         />
@@ -32,8 +32,8 @@ const Cardboard = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  cardImage: state.deck.cards ? state.deck.cards[0].image : "",
-  flippedCards: state.deck.flippedCards,
+  currentCard: state.deck.currentCard ? state.deck.currentCard.image : "",
+  // flippedCards: state.deck.flippedCards,
   previousCard: state.deck.previousCard ? state.deck.previousCard.image : "",
 });
 

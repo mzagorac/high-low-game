@@ -3,6 +3,9 @@ import { FETCH_NEW_DECK, FETCH_CARD } from "../actions/actionTypes";
 const INITIAL_STATE = {
   deck_id: null,
   remaining: null,
+  flippedCards: [],
+  currentCard: null,
+  previousCard: null,
 };
 
 export const deckReducer = (state = INITIAL_STATE, action) => {
@@ -17,6 +20,9 @@ export const deckReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         ...action.payload,
+        previousCard: state.currentCard,
+        currentCard: action.payload.cards[0],
+        flippedCards: [...state.flippedCards, action.payload.cards[0].image],
       };
     default:
       return state;

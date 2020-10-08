@@ -1,18 +1,10 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { Stage, Layer } from "react-konva";
 import { connect } from "react-redux";
 
 import Card from "./Card";
 
 const flipCard = "./back-card.png";
-const card = "https://deckofcardsapi.com/static/img/JD.png";
-const cards = [
-  "https://deckofcardsapi.com/static/img/JD.png",
-  "https://deckofcardsapi.com/static/img/JD.png",
-  "https://deckofcardsapi.com/static/img/JD.png",
-  "https://deckofcardsapi.com/static/img/JD.png",
-  "https://deckofcardsapi.com/static/img/JD.png",
-];
 
 const Cardboard = (props) => {
   return (
@@ -28,14 +20,12 @@ const Cardboard = (props) => {
           position={{ x: 350, y: 50 }}
           dim={{ width: 226, height: 314 }}
         />
-        {cards.map((card, i) => (
-          <Card
-            key={i}
-            imgUrl={card}
-            position={{ x: 850, y: 50 + i * 25 }}
-            dim={{ width: 113, height: 157 }}
-          />
-        ))}
+
+        <Card
+          imgUrl={props.previousCard}
+          position={{ x: 850, y: 50 }}
+          dim={{ width: 113, height: 157 }}
+        />
       </Layer>
     </Stage>
   );
@@ -43,6 +33,8 @@ const Cardboard = (props) => {
 
 const mapStateToProps = (state) => ({
   cardImage: state.deck.cards ? state.deck.cards[0].image : "",
+  flippedCards: state.deck.flippedCards,
+  previousCard: state.deck.previousCard ? state.deck.previousCard.image : "",
 });
 
 export default connect(mapStateToProps)(Cardboard);

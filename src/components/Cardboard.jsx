@@ -1,33 +1,48 @@
 import React, { useRef, useEffect } from "react";
 import { Stage, Layer } from "react-konva";
+import { connect } from "react-redux";
 
 import Card from "./Card";
 
 const flipCard = "./back-card.png";
 const card = "https://deckofcardsapi.com/static/img/JD.png";
+const cards = [
+  "https://deckofcardsapi.com/static/img/JD.png",
+  "https://deckofcardsapi.com/static/img/JD.png",
+  "https://deckofcardsapi.com/static/img/JD.png",
+  "https://deckofcardsapi.com/static/img/JD.png",
+  "https://deckofcardsapi.com/static/img/JD.png",
+];
 
-const Cardboard = () => {
-  //   const canvasRef = useRef();
-
-  //   useEffect(() => {
-  //     const canvas = canvasRef.current;
-  //     canvas.width = window.innerWidth;
-  //     canvas.height = 600;
-
-  //     const ctx = canvas.getContext("2d");
-  //   }, []);
-
+const Cardboard = (props) => {
   return (
-    // <canvas ref={canvasRef}>
-    //   Your browser does not support canvas element
-    // </canvas>
     <Stage width={window.innerWidth} height={550}>
       <Layer>
-        <Card imgUrl={flipCard} position={{ x: 50, y: 50 }} />
-        <Card imgUrl={card} position={{ x: 350, y: 50 }} />
+        <Card
+          imgUrl={flipCard}
+          position={{ x: 50, y: 50 }}
+          dim={{ width: 226, height: 314 }}
+        />
+        <Card
+          imgUrl={props.cardImage}
+          position={{ x: 350, y: 50 }}
+          dim={{ width: 226, height: 314 }}
+        />
+        {cards.map((card, i) => (
+          <Card
+            key={i}
+            imgUrl={card}
+            position={{ x: 850, y: 50 + i * 25 }}
+            dim={{ width: 113, height: 157 }}
+          />
+        ))}
       </Layer>
     </Stage>
   );
 };
 
-export default Cardboard;
+const mapStateToProps = (state) => ({
+  cardImage: state.deck.cards ? state.deck.cards[0].image : "",
+});
+
+export default connect(mapStateToProps)(Cardboard);

@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { placeBet } from "../redux/actions/gameActions";
 
 const Input = ({bet, placeBet, warning}) => {
-  const [newBet, setNewBet] = useState(bet);
+  const [, setNewBet] = useState(bet);
 
   const changeBetHandler = e => {
-    if (e.target.value >= 0) {
-      setNewBet(e.target.value)
-      placeBet(e.target.value)
+    if (Number(e.target.value) >= 0) {
+      setNewBet(Number(e.target.value))
+      placeBet(Number(e.target.value))
     }
   }
 
@@ -25,7 +25,6 @@ const Input = ({bet, placeBet, warning}) => {
 
 const mapStateToProps = state => ({
   bet: state.game.bet,
-  // coinTotal: state.game.playersCoin,
   warning: state.game.warning
 });
 

@@ -4,3 +4,4 @@ export const RESET_GAME = "RESET_GAME";
 export const PLACE_BET = "PLACE_BET";
 export const CORRECT= "CORRECT";
 export const INCORRECT = "INCORRECT";
+export const CHECK_STATE = "CHECK_STATE";

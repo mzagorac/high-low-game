@@ -1,4 +1,4 @@
-import { FETCH_NEW_DECK, FETCH_CARD, RESET_GAME, HIGHER } from "../actions/actionTypes";
+import { FETCH_NEW_DECK, FETCH_CARD, RESET_GAME } from "../actions/actionTypes";
 
 const INITIAL_STATE = {
   deck_id: null,

@@ -1,10 +1,11 @@
-import { CORRECT, INCORRECT, PLACE_BET, RESET_GAME } from '../actions/actionTypes'
+import { CHECK_STATE, CORRECT, INCORRECT, PLACE_BET, RESET_GAME } from '../actions/actionTypes'
 
 
 const INITIAL_STATE = {
   bet: 10,
-  playersCoin: 15,
-  warning: null
+  playersCoin: 100,
+  warning: null,
+  gameOver: false
 }
 
 export const gameReducer = (state = INITIAL_STATE, action) => {
@@ -23,22 +24,28 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
         bet: action.payload
       };
 
-      case CORRECT:
-        return {
-          ...state,
-          playersCoin : state.playersCoin + state.bet
-        }
-
-      case INCORRECT:
-        console.log(action)
-        return {
-          ...state,
-          playersCoin : state.playersCoin - state.bet,
-          bet: state.playersCoin < state.bet ? state.playersCoin : state.bet 
-        }
+    case CORRECT:
+      return {
+         ...state,
+        playersCoin : state.playersCoin + state.bet,
+      }
+        
+    case INCORRECT:
+      return {
+        ...state,
+        playersCoin : state.playersCoin - state.bet,
+      }
 
     case RESET_GAME:
       return { ...INITIAL_STATE }
+
+    case CHECK_STATE:
+      return {
+        ...state,
+        bet: state.bet > state.playersCoin ? state.playersCoin : state.bet,
+        warning: state.bet <= state.playersCoin && "",
+        gameOver: state.playersCoin <= 0 
+      }
     default:
       return state;
   }

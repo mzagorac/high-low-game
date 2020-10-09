@@ -15,11 +15,10 @@ const resetGame = () => ({
   type: RESET_GAME,
 });
 
-const compare = (displayedCard, drawnCard, flag, userCoin) => {
+const compare = (displayedCard, drawnCard, flag) => {
   const type = larger(displayedCard, drawnCard) === flag ? CORRECT : INCORRECT;
   return {
     type,
-    payload: userCoin
   }  
 }
 

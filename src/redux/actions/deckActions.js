@@ -15,11 +15,11 @@ const resetGame = () => ({
   type: RESET_GAME,
 });
 
-const compare = (displayedCard, drawnCard, flag) => {
-  console.log(flag)
+const compare = (displayedCard, drawnCard, flag, userCoin) => {
   const type = larger(displayedCard, drawnCard) === flag ? CORRECT : INCORRECT;
   return {
     type,
+    payload: userCoin
   }  
 }
 
@@ -36,7 +36,7 @@ export const fetchDeck = () => async (dispatch) => {
   }
 };
 
-export const fetchCard = (id, card, flag = '') => async (dispatch) => {
+export const fetchCard = (id, card, flag = '')  => async (dispatch) => {
   try {
     const response = await fetch(
       `https://deckofcardsapi.com/api/deck/${id}/draw/?count=1`

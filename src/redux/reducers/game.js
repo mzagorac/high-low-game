@@ -30,9 +30,11 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
         }
 
       case INCORRECT:
+        console.log(action)
         return {
           ...state,
-          playersCoin : state.playersCoin - state.bet
+          playersCoin : state.playersCoin - state.bet,
+          bet: state.playersCoin < state.bet ? state.playersCoin : state.bet 
         }
 
     case RESET_GAME:

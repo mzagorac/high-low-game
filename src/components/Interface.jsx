@@ -7,11 +7,13 @@ import Button from "./Button";
 import { fetchCard, reset } from "../redux/actions/deckActions";
 
 
-const Interface = ({ deck_id, fetchCard, resetGame, currentCard }) => {
+const Interface = ({ deck_id, fetchCard, resetGame, currentCard, userCoin }) => {
   
   const compareHandler =  (flag) => {
     fetchCard(deck_id, currentCard, flag);
   };
+
+  
  
   return (
     <div>
@@ -27,7 +29,8 @@ const Interface = ({ deck_id, fetchCard, resetGame, currentCard }) => {
 const mapStateToProps = (state) => ({
   deck_id: state.deck.deck_id,
   currentCard: state.deck.currentCard,
-  previousCard: state.deck.previousCard
+  previousCard: state.deck.previousCard,
+  userCoin: state.game.playersCoin
 });
 
 const mapDispatchToProps = (dispatch) => {

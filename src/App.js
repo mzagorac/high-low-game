@@ -9,10 +9,10 @@ import { fetchDeck } from "./redux/actions/deckActions";
 
 import "./App.css";
 
-function App(props) {
+function App({getDeck}) {
   useEffect(() => {
-    props.getDeck();
-  }, []);
+    getDeck();
+  }, [getDeck]);
 
   return (
     <div className="App">

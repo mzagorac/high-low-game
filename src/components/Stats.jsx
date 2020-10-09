@@ -1,11 +1,17 @@
 import React from "react";
+import {connect} from 'react-redux'
 
-const Stats = () => {
+const Stats = ({currentAmount}) => {
   return (
     <div>
-      <h2>Stats</h2>
+      <h2>You curently have {currentAmount} coins</h2>
+
     </div>
   );
 };
 
-export default Stats;
+const mapStateToProps = state => ({
+  currentAmount: state.game.playersCoin
+})
+
+export default connect(mapStateToProps)(Stats) ;

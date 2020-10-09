@@ -1,4 +1,4 @@
-import { PLACE_BET, RESET_GAME } from '../actions/actionTypes'
+import { CORRECT, INCORRECT, PLACE_BET, RESET_GAME } from '../actions/actionTypes'
 
 
 const INITIAL_STATE = {
@@ -8,7 +8,6 @@ const INITIAL_STATE = {
 }
 
 export const gameReducer = (state = INITIAL_STATE, action) => {
-  
   switch (action.type) {
     case PLACE_BET:
       if (action.payload > state.playersCoin) {
@@ -23,6 +22,18 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
         warning: null,
         bet: action.payload
       };
+
+      case CORRECT:
+        return {
+          ...state,
+          playersCoin : state.playersCoin + state.bet
+        }
+
+      case INCORRECT:
+        return {
+          ...state,
+          playersCoin : state.playersCoin - state.bet
+        }
 
     case RESET_GAME:
       return { ...INITIAL_STATE }

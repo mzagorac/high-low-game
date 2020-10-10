@@ -8,8 +8,18 @@ import { fetchCard, reset } from "../redux/actions/deckActions";
 import { checkState } from '../redux/actions/gameActions';
 
 
-const Interface = ({ deck_id, fetchCard, resetGame, currentCard, userCoin, checkState, gameOver, newGame }) => {
-
+const Interface = ({
+   deck_id, 
+   fetchCard, 
+   resetGame, 
+   currentCard, 
+   userCoin, 
+   checkState, 
+   gameOver, 
+   newGame, 
+   cardRemaining 
+}) => {
+  
   useEffect(() => {
     checkState();
   }, [userCoin, checkState])
@@ -20,11 +30,12 @@ const Interface = ({ deck_id, fetchCard, resetGame, currentCard, userCoin, check
 
   return (
     <div>
+      { !cardRemaining && <p>There is no card left</p>  }
       <Input />
       <Button onClick={() => newGame('new')}>New Game</Button>
       <Button onClick={() => resetGame('reset')} >Reset</Button>
-      <Button onClick={() => compareHandler('H')} disabled={gameOver} >Higher</Button>
-      <Button onClick={() => compareHandler('L')} disabled={gameOver} >Lower</Button>
+      <Button onClick={() => compareHandler('H')} disabled={gameOver || !cardRemaining} >Higher</Button>
+      <Button onClick={() => compareHandler('L')} disabled={gameOver || !cardRemaining} >Lower</Button>
     </div>
   );
 };
@@ -34,7 +45,8 @@ const mapStateToProps = (state) => ({
   currentCard: state.deck.currentCard,
   previousCard: state.deck.previousCard,
   userCoin: state.game.playersCoin,
-  gameOver: state.game.gameOver
+  gameOver: state.game.gameOver,
+  cardRemaining: state.deck.remaining
 });
 
 const mapDispatchToProps = (dispatch, data) => {

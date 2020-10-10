@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
+import Header from './components/Header';
 import Cardboard from "./components/Cardboard";
 import Interface from "./components/Interface";
 import Stats from "./components/Stats";
+
+// import CanvasTest from './components/CanvasTest';
 
 import { fetchDeck } from "./redux/actions/deckActions";
 
@@ -16,10 +19,13 @@ function App({getDeck}) {
 
   return (
     <div className="App">
-      <h1>High-Low</h1>
-      <Stats />
-      <Cardboard />
-      <Interface />
+      <Header />
+      <div className="container">
+        <Stats />
+        <Cardboard />
+        {/* <CanvasTest /> */}
+        <Interface />
+      </div>
     </div>
   );
 }

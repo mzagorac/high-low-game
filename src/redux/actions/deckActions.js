@@ -1,6 +1,4 @@
 import { 
-  // FETCH_NEW_DECK, 
-  // FETCH_CARD, 
   CORRECT, 
   INCORRECT, 
   FETCH_NEW_DECK_START, 
@@ -13,11 +11,6 @@ import {
 
 import { newGame, resetGame } from './gameActions'
 import { larger } from '../../utils';
-
-// const getDeck = (deck) => ({
-//   type: FETCH_NEW_DECK,
-//   payload: deck,
-// });
 
 const getDeckStart = () => ({
   type: FETCH_NEW_DECK_START
@@ -46,11 +39,6 @@ const getCardSuccess  = (card) => ({
   type: FETCH_CARD_SUCCESS,
   payload: card
 });  
-
-// const getCard = (card) => ({
-//   type: FETCH_CARD,
-//   payload: card,
-// });
 
 const compare = (displayedCard, drawnCard, flag) => {
   const type = larger(displayedCard, drawnCard) === flag ? CORRECT : INCORRECT;

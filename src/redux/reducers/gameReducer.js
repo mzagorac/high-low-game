@@ -1,5 +1,4 @@
-import { CHECK_STATE, CORRECT, INCORRECT, PLACE_BET, RESET_GAME } from '../actions/actionTypes'
-
+import { CHECK_STATE, CORRECT, INCORRECT, NEW_GAME, PLACE_BET, RESET_GAME } from '../actions/actionTypes'
 
 const INITIAL_STATE = {
   bet: 10,
@@ -35,6 +34,12 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
         ...state,
         playersCoin : state.playersCoin - state.bet,
       }
+
+    case NEW_GAME:
+      return {
+        ...INITIAL_STATE,
+        playersCoin: state.playersCoin
+      }  
 
     case RESET_GAME:
       return { ...INITIAL_STATE }

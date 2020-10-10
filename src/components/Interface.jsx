@@ -8,7 +8,7 @@ import { fetchCard, reset } from "../redux/actions/deckActions";
 import { checkState } from '../redux/actions/gameActions';
 
 
-const Interface = ({ deck_id, fetchCard, resetGame, currentCard, userCoin, checkState, gameOver }) => {
+const Interface = ({ deck_id, fetchCard, resetGame, currentCard, userCoin, checkState, gameOver, newGame }) => {
 
   useEffect(() => {
     checkState();
@@ -21,8 +21,8 @@ const Interface = ({ deck_id, fetchCard, resetGame, currentCard, userCoin, check
   return (
     <div>
       <Input />
-      <Button>New Game</Button>
-      <Button onClick={() => resetGame()} >Reset</Button>
+      <Button onClick={() => newGame('new')}>New Game</Button>
+      <Button onClick={() => resetGame('reset')} >Reset</Button>
       <Button onClick={() => compareHandler('H')} disabled={gameOver} >Higher</Button>
       <Button onClick={() => compareHandler('L')} disabled={gameOver} >Lower</Button>
     </div>
@@ -38,11 +38,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch, data) => {
-  console.log(data)
   return {
     fetchCard: (id, card, flag) => dispatch(fetchCard(id, card, flag)),
-    resetGame: () => dispatch(reset()),
-    checkState: () => dispatch(checkState())
+    resetGame: (action) => dispatch(reset(action)),
+    checkState: () => dispatch(checkState()),
+    newGame: (action) => dispatch(reset(action))
   };
 };
 

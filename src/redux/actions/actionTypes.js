@@ -1,6 +1,15 @@
-export const FETCH_NEW_DECK = "FETCH_NEW_DECK";
-export const FETCH_CARD = "FETCH_CARD";
+// export const FETCH_NEW_DECK = "FETCH_NEW_DECK";
+export const FETCH_NEW_DECK_START = "FETCH_NEW_DECK_START";
+export const FETCH_NEW_DECK_SUCCESS = "FETCH_NEW_DECK_SUCCESS";
+export const FETCH_NEW_DECK_ERROR = "FETCH_NEW_DECK_ERROR";
+
+// export const FETCH_CARD = "FETCH_CARD";
+export const FETCH_CARD_START = "FETCH_CARD_START";
+export const FETCH_CARD_SUCCESS = "FETCH_CARD_SUCCESS";
+export const FETCH_CARD_ERROR = "FETCH_CARD_ERROR";
+
 export const RESET_GAME = "RESET_GAME";
+export const NEW_GAME = "NEW_GAME";
 export const PLACE_BET = "PLACE_BET";
 export const CORRECT= "CORRECT";
 export const INCORRECT = "INCORRECT";

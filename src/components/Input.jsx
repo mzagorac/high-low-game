@@ -6,7 +6,7 @@ const Input = ({bet, placeBet, warning}) => {
   const [, setNewBet] = useState(bet);
 
   const changeBetHandler = e => {
-    if (Number(e.target.value) >= 0) {
+    if (Number(e.target.value) > 0) {
       setNewBet(Number(e.target.value))
       placeBet(Number(e.target.value))
     }

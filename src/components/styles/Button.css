@@ -1,0 +1,30 @@
+button {
+  width: 150px;
+  height: 45px;
+  margin: 8px;
+  font-size: 1.1rem;
+  border: none;
+  color: white;
+  background-color: rgb(80, 211, 20);
+  cursor: pointer;
+  /* box-shadow: 3px 3px 7px 3px; */
+  transition: 0.3s;
+}
+
+button:hover {
+  /* transform: translateY(3px); */
+  background-color: rgb(120, 240, 64);
+  color: black;
+}
+
+button:active {
+  transform: translateY(4px);
+}
+
+button:disabled {
+  background-color: grey;
+  opacity: 0.5;
+  transform: none;
+  color: white;
+  cursor: not-allowed;
+}

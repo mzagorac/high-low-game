@@ -7,7 +7,6 @@ import Button from "./Button";
 import { fetchCard, reset } from "../redux/actions/deckActions";
 import { checkState } from '../redux/actions/gameActions';
 
-
 const Interface = ({
    deck_id, 
    fetchCard, 
@@ -31,7 +30,7 @@ const Interface = ({
   return (
     <div>
       { !cardRemaining && <p>There is no card left</p>  }
-      <Input />
+      <Input label="Place Bet" name="bet" />
       <Button onClick={() => newGame('new')}>New Game</Button>
       <Button onClick={() => resetGame('reset')} >Reset</Button>
       <Button onClick={() => compareHandler('H')} disabled={gameOver || !cardRemaining} >Higher</Button>
@@ -49,7 +48,7 @@ const mapStateToProps = (state) => ({
   cardRemaining: state.deck.remaining
 });
 
-const mapDispatchToProps = (dispatch, data) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     fetchCard: (id, card, flag) => dispatch(fetchCard(id, card, flag)),
     resetGame: (action) => dispatch(reset(action)),

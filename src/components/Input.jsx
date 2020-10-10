@@ -2,7 +2,9 @@ import React, {useState} from "react";
 import { connect } from 'react-redux'
 import { placeBet } from "../redux/actions/gameActions";
 
-const Input = ({bet, placeBet, warning}) => {
+import './styles/Input.css';
+
+const Input = ({bet, placeBet, warning, label, name}) => {
   const [, setNewBet] = useState(bet);
 
   const changeBetHandler = e => {
@@ -13,11 +15,9 @@ const Input = ({bet, placeBet, warning}) => {
   }
 
   return (
-    <div>
-      <label>
-        Place Bet
-        <input type="number" value={bet} onChange={changeBetHandler} />
-      </label>
+    <div className="Input">
+      <label htmlFor={name}>{label}</label>
+      <input type="number" id={name} value={bet} onChange={changeBetHandler} />
       {warning && <p>{warning}</p>}
     </div>
   );

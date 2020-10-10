@@ -5,11 +5,6 @@ import { connect } from "react-redux";
 import Img from "./Img";
 import { flipCard, fetchIcon } from '../utils'
 
-// const flipCard = "./back-card.png";
-// const higerIcon = './up-arrow-sketch.png';
-// const lowerIcon = './down-arrow-sketch.png';
-// const equal = './equal.png';
-
 const Cardboard = (props) => {
   const [icon, setIcon] = useState(null);
 

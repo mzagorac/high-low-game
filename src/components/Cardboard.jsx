@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Stage, Layer } from "react-konva";
 import { connect } from "react-redux";
 
@@ -7,26 +7,27 @@ import { flipCard, fetchIcon } from '../utils'
 
 const Cardboard = (props) => {
   const [icon, setIcon] = useState(null);
+  const { current: canvasWidth } = useRef(window.innerWidth * 0.65)
+  const cardWidth = canvasWidth * 0.15;
+  const cardHeight = cardWidth * 1.35
 
   useEffect(() => {
     const res = fetchIcon(props.previousCard.value, props.currentCard.value);
     setIcon(res);
   }, [props.previousCard, props.currentCard]);
 
-  console.log(icon);
-
   return (
-    <Stage width={960} height={550}>
+    <Stage width={canvasWidth} height={canvasWidth * 0.35}>
       <Layer>
         <Img
           imgUrl={!props.cardRemaining ? '' : flipCard}
           position={{ x: 50, y: 50 }}
-          dim={{ width: 226, height: 314 }}
+          dim={{ width: cardWidth, height: cardHeight }}
         />
         <Img
           imgUrl={props.currentCard.image}
           position={{ x: 350, y: 50 }}
-          dim={{ width: 226, height: 314 }}
+          dim={{ width: cardWidth, height: cardHeight }}
         />
         <Img imgUrl={icon} position={{ x: 600, y: 100 }} dim={{ width: 55, height: 55 }} />
         <Img
